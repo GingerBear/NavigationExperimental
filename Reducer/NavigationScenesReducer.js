@@ -16,9 +16,9 @@ const shallowEqual = require('fbjs/lib/shallowEqual');
 
 import type {
   NavigationRoute,
-  NavigationScene,
-  NavigationState,
-} from 'NavigationTypeDefinition';
+    NavigationScene,
+    NavigationState,
+} from '../NavigationTypeDefinition';
 
 const SCENE_KEY_PREFIX = 'scene_';
 
@@ -105,7 +105,7 @@ function NavigationScenesReducer(
 
   // Populate stale scenes from previous scenes marked as stale.
   scenes.forEach(scene => {
-    const {key} = scene;
+    const { key } = scene;
     if (scene.isStale) {
       staleScenes.set(key, scene);
     }
@@ -125,7 +125,7 @@ function NavigationScenesReducer(
     invariant(
       !nextKeys.has(key),
       `navigationState.routes[${index}].key "${key}" conflicts with ` +
-        'another route!'
+      'another route!'
     );
     nextKeys.add(key);
 
@@ -157,7 +157,7 @@ function NavigationScenesReducer(
   const nextScenes = [];
 
   const mergeScene = (nextScene => {
-    const {key} = nextScene;
+    const { key } = nextScene;
     const prevScene = prevScenes.has(key) ? prevScenes.get(key) : null;
     if (prevScene && areScenesShallowEqual(prevScene, nextScene)) {
       // Reuse `prevScene` as `scene` so view can avoid unnecessary re-render.

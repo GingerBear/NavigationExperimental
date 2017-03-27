@@ -15,8 +15,8 @@ const invariant = require('fbjs/lib/invariant');
 
 import type {
   NavigationRoute,
-  NavigationState
-} from 'NavigationTypeDefinition';
+    NavigationState
+} from './NavigationTypeDefinition';
 
 /**
  * Utilities to perform atomic operation with navigate state and routes.

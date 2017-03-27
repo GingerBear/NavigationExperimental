@@ -32,14 +32,14 @@
  */
 'use strict';
 
-const React = require('React');
-const NavigationAnimatedValueSubscription = require('NavigationAnimatedValueSubscription');
+const React = require('react');
+const NavigationAnimatedValueSubscription = require('./NavigationAnimatedValueSubscription');
 
 const invariant = require('fbjs/lib/invariant');
 
 import type  {
   NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+} from '../NavigationTypeDefinition';
 
 type Props = NavigationSceneRendererProps;
 
@@ -58,7 +58,7 @@ function create(
 
     _component: any;
     _onComponentRef: (view: any) => void;
-    _onPositionChange: (data: {value: number}) => void;
+    _onPositionChange: (data: { value: number }) => void;
     _pointerEvents: string;
     _positionListener: ?NavigationAnimatedValueSubscription;
 
@@ -86,7 +86,7 @@ function create(
       this._bindPosition(nextProps);
     }
 
-    render(): React.Element<any>  {
+    render(): React.Element<any> {
       this._pointerEvents = this._computePointerEvents();
       return (
         <Component
@@ -109,7 +109,7 @@ function create(
 
     _bindPosition(props: NavigationSceneRendererProps): void {
       this._positionListener && this._positionListener.remove();
-      this._positionListener = new  NavigationAnimatedValueSubscription(
+      this._positionListener = new NavigationAnimatedValueSubscription(
         props.position,
         this._onPositionChange,
       );
@@ -120,7 +120,7 @@ function create(
         const pointerEvents = this._computePointerEvents();
         if (this._pointerEvents !== pointerEvents) {
           this._pointerEvents = pointerEvents;
-          this._component.setNativeProps({pointerEvents});
+          this._component.setNativeProps({ pointerEvents });
         }
       }
     }
@@ -150,7 +150,7 @@ function create(
       return 'auto';
     }
   }
-  return  Container;
+  return Container;
 }
 
 module.exports = {

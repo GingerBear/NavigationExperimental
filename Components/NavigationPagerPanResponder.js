@@ -11,21 +11,21 @@
  */
 'use strict';
 
-const Animated = require('Animated');
-const NavigationAbstractPanResponder = require('NavigationAbstractPanResponder');
-const NavigationCardStackPanResponder = require('NavigationCardStackPanResponder');
-const I18nManager = require('I18nManager');
+const Animated = require('react-native').Animated;
+const NavigationAbstractPanResponder = require('../NavigationAbstractPanResponder');
+const NavigationCardStackPanResponder = require('./NavigationCardStackPanResponder');
+const I18nManager = require('react-native').I18nManager;
 
 const clamp = require('clamp');
 
 import type {
   NavigationPanPanHandlers,
-  NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+    NavigationSceneRendererProps,
+} from '../NavigationTypeDefinition';
 
 import type {
   NavigationGestureDirection,
-} from 'NavigationCardStackPanResponder';
+} from './NavigationCardStackPanResponder';
 
 type Props = NavigationSceneRendererProps & {
   onNavigateBack: ?Function,
@@ -184,7 +184,7 @@ class NavigationPagerPanResponder extends NavigationAbstractPanResponder {
     position.stopAnimation((value: number) => {
       this._reset();
       if (
-        distance > DISTANCE_THRESHOLD  ||
+        distance > DISTANCE_THRESHOLD ||
         value <= index - POSITION_THRESHOLD ||
         moveSpeed > VELOCITY_THRESHOLD
       ) {
@@ -194,7 +194,7 @@ class NavigationPagerPanResponder extends NavigationAbstractPanResponder {
 
       if (
         distance < -DISTANCE_THRESHOLD ||
-        value >= index  + POSITION_THRESHOLD ||
+        value >= index + POSITION_THRESHOLD ||
         moveSpeed < -VELOCITY_THRESHOLD
       ) {
         onNavigateForward && onNavigateForward();

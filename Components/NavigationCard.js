@@ -32,21 +32,21 @@
  */
 'use strict';
 
-const Animated = require('Animated');
-const NavigationCardStackPanResponder = require('NavigationCardStackPanResponder');
-const NavigationCardStackStyleInterpolator = require('NavigationCardStackStyleInterpolator');
-const NavigationPagerPanResponder = require('NavigationPagerPanResponder');
-const NavigationPagerStyleInterpolator = require('NavigationPagerStyleInterpolator');
-const NavigationPointerEventsContainer = require('NavigationPointerEventsContainer');
-const NavigationPropTypes = require('NavigationPropTypes');
-const React = require('React');
-const StyleSheet = require('StyleSheet');
+const Animated = require('react-native').Animated;
+const NavigationCardStackPanResponder = require('./NavigationCardStackPanResponder');
+const NavigationCardStackStyleInterpolator = require('./NavigationCardStackStyleInterpolator');
+const NavigationPagerPanResponder = require('./NavigationPagerPanResponder');
+const NavigationPagerStyleInterpolator = require('./NavigationPagerStyleInterpolator');
+const NavigationPointerEventsContainer = require('./NavigationPointerEventsContainer');
+const NavigationPropTypes = require('../NavigationPropTypes');
+const React = require('react');
+const StyleSheet = require('react-native').StyleSheet;
 
 import type  {
   NavigationPanPanHandlers,
-  NavigationSceneRenderer,
-  NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+    NavigationSceneRenderer,
+    NavigationSceneRendererProps,
+} from '../NavigationTypeDefinition';
 
 type Props = NavigationSceneRendererProps & {
   onComponentRef: (ref: any) => void,
@@ -57,7 +57,7 @@ type Props = NavigationSceneRendererProps & {
   style: any,
 };
 
-const {PropTypes} = React;
+const { PropTypes } = React;
 
 /**
  * Component that renders the scene as card for the <NavigationCardStack />.
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     shadowColor: 'black',
-    shadowOffset: {width: 0, height: 0},
+    shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.4,
     shadowRadius: 10,
     top: 0,

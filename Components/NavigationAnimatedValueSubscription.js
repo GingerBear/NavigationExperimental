@@ -29,7 +29,7 @@
 
 import type  {
   NavigationAnimatedValue
-} from 'NavigationTypeDefinition';
+} from '../NavigationTypeDefinition';
 
 class NavigationAnimatedValueSubscription {
   _value: NavigationAnimatedValue;

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     width: 24,
     margin: Platform.OS === 'ios' ? 10 : 16,
     resizeMode: 'contain',
-    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
   }
 });
 

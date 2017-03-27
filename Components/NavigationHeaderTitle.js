@@ -50,8 +50,8 @@ type Props = {
 }
 
 const NavigationHeaderTitle = ({ children, style, textStyle, viewProps }: Props) => (
-  <View style={[ styles.title, style ]} {...viewProps}>
-    <Text style={[ styles.titleText, textStyle ]}>{children}</Text>
+  <View style={[styles.title, style]} {...viewProps}>
+    <Text style={[styles.titleText, textStyle]}>{children}</Text>
   </View>
 );
 

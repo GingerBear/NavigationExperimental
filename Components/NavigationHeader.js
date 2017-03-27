@@ -32,14 +32,14 @@
  */
 'use strict';
 
-const NavigationHeaderBackButton = require('NavigationHeaderBackButton');
-const NavigationHeaderStyleInterpolator = require('NavigationHeaderStyleInterpolator');
-const NavigationHeaderTitle = require('NavigationHeaderTitle');
-const NavigationPropTypes = require('NavigationPropTypes');
-const React = require('React');
+const NavigationHeaderBackButton = require('./NavigationHeaderBackButton');
+const NavigationHeaderStyleInterpolator = require('./NavigationHeaderStyleInterpolator');
+const NavigationHeaderTitle = require('./NavigationHeaderTitle');
+const NavigationPropTypes = require('../NavigationPropTypes');
+const React = require('react');
 const ReactComponentWithPureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
 const ReactNative = require('react-native');
-const TVEventHandler = require('TVEventHandler');
+const TVEventHandler = require('react-native').TVEventHandler;
 
 const {
   Animated,
@@ -50,8 +50,8 @@ const {
 
 import type  {
   NavigationSceneRendererProps,
-  NavigationStyleInterpolator,
-} from 'NavigationTypeDefinition';
+    NavigationStyleInterpolator,
+} from '../NavigationTypeDefinition';
 
 type SubViewProps = NavigationSceneRendererProps & {
   onNavigateBack: ?Function,
@@ -80,7 +80,7 @@ type SubViewName = 'left' | 'title' | 'right';
 
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
-const {PropTypes} = React;
+const { PropTypes } = React;
 
 class NavigationHeader extends React.Component<DefaultProps, Props, any> {
   props: Props;
@@ -162,10 +162,10 @@ class NavigationHeader extends React.Component<DefaultProps, Props, any> {
 
     return (
       <Animated.View style={[
-          styles.appbar,
-          { height: barHeight },
-          style
-        ]}
+        styles.appbar,
+        { height: barHeight },
+        style
+      ]}
         {...viewProps}
       >
         {scenesProps.map(this._renderLeft, this)}
@@ -176,75 +176,76 @@ class NavigationHeader extends React.Component<DefaultProps, Props, any> {
   }
 
   _renderLeft = (props: NavigationSceneRendererProps): ?React.Element<any> => {
-    return this._renderSubView(
-      props,
-      'left',
-      this.props.renderLeftComponent,
-      NavigationHeaderStyleInterpolator.forLeft,
-    );
-  };
+  return this._renderSubView(
+    props,
+    'left',
+    this.props.renderLeftComponent,
+    NavigationHeaderStyleInterpolator.forLeft,
+  );
+};
 
-  _renderTitle = (props: NavigationSceneRendererProps): ?React.Element<any> => {
-    return this._renderSubView(
-      props,
-      'title',
-      this.props.renderTitleComponent,
-      NavigationHeaderStyleInterpolator.forCenter,
-    );
-  };
+_renderTitle = (props: NavigationSceneRendererProps): ?React.Element < any > => {
+  return this._renderSubView(
+    props,
+    'title',
+    this.props.renderTitleComponent,
+    NavigationHeaderStyleInterpolator.forCenter,
+  );
+};
 
-  _renderRight = (props: NavigationSceneRendererProps): ?React.Element<any> => {
-    return this._renderSubView(
-      props,
-      'right',
-      this.props.renderRightComponent,
-      NavigationHeaderStyleInterpolator.forRight,
-    );
-  };
+_renderRight = (props: NavigationSceneRendererProps): ?React.Element < any > => {
+  return this._renderSubView(
+    props,
+    'right',
+    this.props.renderRightComponent,
+    NavigationHeaderStyleInterpolator.forRight,
+  );
+};
 
-  _renderSubView(
-    props: NavigationSceneRendererProps,
-    name: SubViewName,
-    renderer: SubViewRenderer,
-    styleInterpolator: NavigationStyleInterpolator,
-  ): ?React.Element<any> {
-    const {
-      scene,
-      navigationState,
-    } = props;
+_renderSubView(
+  props: NavigationSceneRendererProps,
+  name: SubViewName,
+  renderer: SubViewRenderer,
+  styleInterpolator: NavigationStyleInterpolator,
+): ?React.Element < any > {
+  const {
+    scene,
+    navigationState,
+  } = props;
 
-    const {
-      index,
-      isStale,
-      key,
-    } = scene;
+  const {
+    index,
+    isStale,
+    key,
+  } = scene;
 
-    const offset = navigationState.index - index;
+  const offset = navigationState.index - index;
 
-    if (Math.abs(offset) > 2) {
-      // Scene is far away from the active scene. Hides it to avoid unnecessary
-      // rendering.
-      return null;
-    }
+  if(Math.abs(offset) > 2) {
+    // Scene is far away from the active scene. Hides it to avoid unnecessary
+    // rendering.
+    return null;
+  }
 
-    const subViewProps = {...props, onNavigateBack: this.props.onNavigateBack};
-    const subView = renderer(subViewProps);
-    if (subView === null) {
-      return null;
-    }
+    const subViewProps = { ...props, onNavigateBack: this.props.onNavigateBack };
+  const subView = renderer(subViewProps);
+  if(subView === null) {
+    return null;
+  }
 
     const pointerEvents = offset !== 0 || isStale ? 'none' : 'box-none';
-    return (
+  return(
       <Animated.View
-        pointerEvents={pointerEvents}
-        key={name + '_' + key}
-        style={[
-          styles[name],
-          { marginTop: this.props.statusBarHeight },
-          styleInterpolator(props),
+pointerEvents = { pointerEvents }
+key = { name + '_' + key }
+style = {
+  [
+  styles[name],
+  { marginTop: this.props.statusBarHeight },
+  styleInterpolator(props),
         ]}>
-        {subView}
-      </Animated.View>
+  { subView }
+      </Animated.View >
     );
   }
 

@@ -11,13 +11,13 @@
  */
 'use strict';
 
-const PanResponder = require('PanResponder');
+const PanResponder = require('react-native').PanResponder;
 
 const invariant = require('fbjs/lib/invariant');
 
 import type  {
   NavigationPanPanHandlers,
-} from 'NavigationTypeDefinition';
+} from './NavigationTypeDefinition';
 
 const EmptyPanHandlers = {
   onMoveShouldSetPanResponder: null,
@@ -40,16 +40,16 @@ class NavigationAbstractPanResponder {
     Object.keys(EmptyPanHandlers).forEach(name => {
       const fn: any = (this: any)[name];
 
-      invariant(
-        typeof fn === 'function',
-        'subclass of `NavigationAbstractPanResponder` must implement method %s',
-        name
-      );
+    invariant(
+      typeof fn === 'function',
+      'subclass of `NavigationAbstractPanResponder` must implement method %s',
+      name
+    );
 
-      config[name] = fn.bind(this);
-    }, this);
+    config[name] = fn.bind(this);
+  }, this);
 
-    this.panHandlers = PanResponder.create(config).panHandlers;
+this.panHandlers = PanResponder.create(config).panHandlers;
   }
 }
 

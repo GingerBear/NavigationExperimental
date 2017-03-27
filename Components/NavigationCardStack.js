@@ -32,25 +32,25 @@
  */
 'use strict';
 
-const NativeAnimatedModule = require('NativeModules').NativeAnimatedModule;
-const NavigationCard = require('NavigationCard');
-const NavigationCardStackPanResponder = require('NavigationCardStackPanResponder');
-const NavigationCardStackStyleInterpolator = require('NavigationCardStackStyleInterpolator');
-const NavigationPropTypes = require('NavigationPropTypes');
-const NavigationTransitioner = require('NavigationTransitioner');
-const React = require('React');
-const StyleSheet = require('StyleSheet');
-const View = require('View');
+const NativeAnimatedModule = require('react-native').NativeModules.NativeAnimatedModule;
+const NavigationCard = require('./NavigationCard');
+const NavigationCardStackPanResponder = require('./NavigationCardStackPanResponder');
+const NavigationCardStackStyleInterpolator = require('./NavigationCardStackStyleInterpolator');
+const NavigationPropTypes = require('../NavigationPropTypes');
+const NavigationTransitioner = require('../NavigationTransitioner');
+const React = require('react');
+const StyleSheet = require('react-native').StyleSheet;
+const View = require('react-native').View;
 
-const {PropTypes} = React;
-const {Directions} = NavigationCardStackPanResponder;
+const { PropTypes } = React;
+const { Directions } = NavigationCardStackPanResponder;
 
 import type {
   NavigationState,
-  NavigationSceneRenderer,
-  NavigationSceneRendererProps,
-  NavigationTransitionProps,
-  NavigationStyleInterpolator,
+    NavigationSceneRenderer,
+    NavigationSceneRendererProps,
+    NavigationTransitionProps,
+    NavigationStyleInterpolator,
 } from 'NavigationTypeDefinition';
 
 import type {
@@ -127,8 +127,8 @@ type DefaultProps = {
  * ```
  */
 class NavigationCardStack extends React.Component<DefaultProps, Props, void> {
-  _render : NavigationSceneRenderer;
-  _renderScene : NavigationSceneRenderer;
+  _render: NavigationSceneRenderer;
+  _renderScene: NavigationSceneRenderer;
 
   static propTypes = {
     /**
@@ -261,10 +261,10 @@ class NavigationCardStack extends React.Component<DefaultProps, Props, void> {
     const header = renderHeader ? <View>{renderHeader(props)}</View> : null;
 
     const scenes = props.scenes.map(
-     scene => this._renderScene({
-       ...props,
-       scene,
-     })
+      scene => this._renderScene({
+        ...props,
+        scene,
+      })
     );
 
     return (

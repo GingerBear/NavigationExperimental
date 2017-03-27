@@ -32,11 +32,11 @@
  */
 'use strict';
 
-const I18nManager = require('I18nManager');
+const I18nManager = require('react-native').I18nManager;
 
 import type  {
   NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+} from '../NavigationTypeDefinition';
 
 /**
  * Utility that builds the style for the card in the cards stack.
@@ -91,33 +91,33 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
   const width = layout.initWidth;
   const outputRange = I18nManager.isRTL ?
     ([-width, 0, 10, 10]: Array<number>) :
-    ([width, 0, -10, -10]: Array<number>);
+  ([width, 0, -10, -10]: Array<number>);
 
 
   const opacity = position.interpolate({
     inputRange,
     outputRange: ([1, 1, 0.3, 0]: Array<number>),
+});
+
+const scale = position.interpolate({
+  inputRange,
+  outputRange: ([1, 1, 0.95, 0.95]: Array<number>),
   });
 
-  const scale = position.interpolate({
-    inputRange,
-    outputRange: ([1, 1, 0.95, 0.95]: Array<number>),
-  });
+const translateY = 0;
+const translateX = position.interpolate({
+  inputRange,
+  outputRange,
+});
 
-  const translateY = 0;
-  const translateX = position.interpolate({
-    inputRange,
-    outputRange,
-  });
-
-  return {
-    opacity,
-    transform: [
-      { scale },
-      { translateX },
-      { translateY },
-    ],
-  };
+return {
+  opacity,
+  transform: [
+    { scale },
+    { translateX },
+    { translateY },
+  ],
+};
 }
 
 function forVertical(props: NavigationSceneRendererProps): Object {
@@ -138,27 +138,27 @@ function forVertical(props: NavigationSceneRendererProps): Object {
   const opacity = position.interpolate({
     inputRange,
     outputRange: ([1, 1, 0.3, 0]: Array<number>),
+});
+
+const scale = position.interpolate({
+  inputRange,
+  outputRange: ([1, 1, 0.95, 0.95]: Array<number>),
   });
 
-  const scale = position.interpolate({
-    inputRange,
-    outputRange: ([1, 1, 0.95, 0.95]: Array<number>),
+const translateX = 0;
+const translateY = position.interpolate({
+  inputRange,
+  outputRange: ([height, 0, -10, -10]: Array<number>),
   });
 
-  const translateX = 0;
-  const translateY = position.interpolate({
-    inputRange,
-    outputRange: ([height, 0, -10, -10]: Array<number>),
-  });
-
-  return {
-    opacity,
-    transform: [
-      { scale },
-      { translateX },
-      { translateY },
-    ],
-  };
+return {
+  opacity,
+  transform: [
+    { scale },
+    { translateX },
+    { translateY },
+  ],
+};
 }
 
 function canUseNativeDriver(isVertical: boolean): boolean {

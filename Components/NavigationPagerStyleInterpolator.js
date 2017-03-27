@@ -32,11 +32,11 @@
  */
 'use strict';
 
-const I18nManager = require('I18nManager');
+const I18nManager = require('react-native').I18nManager;
 
 import type  {
   NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+} from '../NavigationTypeDefinition';
 
 /**
  * Utility that builds the style for the card in the cards list.
@@ -92,7 +92,7 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
   const width = layout.initWidth;
   const outputRange = I18nManager.isRTL ?
     ([-width, 0, width]: Array<number>) :
-    ([width, 0, -width]: Array<number>);
+  ([width, 0, -width]: Array<number>);
 
   const translateX = position.interpolate({
     inputRange,
@@ -100,7 +100,7 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
   });
 
   return {
-    opacity : 1,
+    opacity: 1,
     shadowColor: 'transparent',
     shadowRadius: 0,
     transform: [

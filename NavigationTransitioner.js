@@ -11,24 +11,24 @@
  */
 'use strict';
 
-const Animated = require('Animated');
-const Easing = require('Easing');
-const NavigationPropTypes = require('NavigationPropTypes');
-const NavigationScenesReducer = require('NavigationScenesReducer');
-const React = require('React');
-const StyleSheet = require('StyleSheet');
-const View = require('View');
+const Animated = require('react-native').Animated;
+const Easing = require('react-native').Easing;
+const NavigationPropTypes = require('./NavigationPropTypes');
+const NavigationScenesReducer = require('./Reducer/NavigationScenesReducer');
+const React = require('react');
+const StyleSheet = require('react-native').StyleSheet;
+const View = require('react-native').View;
 
 const invariant = require('fbjs/lib/invariant');
 
 import type {
   NavigationAnimatedValue,
-  NavigationLayout,
-  NavigationScene,
-  NavigationState,
-  NavigationTransitionProps,
-  NavigationTransitionSpec,
-} from 'NavigationTypeDefinition';
+    NavigationLayout,
+    NavigationScene,
+    NavigationState,
+    NavigationTransitionProps,
+    NavigationTransitionSpec,
+} from './NavigationTypeDefinition';
 
 type Props = {
   configureTransition: (
@@ -49,7 +49,7 @@ type State = {
   scenes: Array<NavigationScene>,
 };
 
-const {PropTypes} = React;
+const { PropTypes } = React;
 
 const DefaultTransitionSpec = {
   duration: 250,
@@ -152,7 +152,7 @@ class NavigationTransitioner extends React.Component<any, Props, State> {
       ...transitionUserSpec,
     };
 
-    const {timing} = transitionSpec;
+    const { timing } = transitionSpec;
     delete transitionSpec.timing;
 
     const animations = [
@@ -198,7 +198,7 @@ class NavigationTransitioner extends React.Component<any, Props, State> {
   }
 
   _onLayout(event: any): void {
-    const {height, width} = event.nativeEvent.layout;
+    const { height, width } = event.nativeEvent.layout;
     if (this.state.layout.initWidth === width &&
       this.state.layout.initHeight === height) {
       return;

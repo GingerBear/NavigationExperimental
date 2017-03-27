@@ -11,7 +11,7 @@
  */
 'use strict';
 
-const Animated = require('Animated');
+const Animated = require('react-native').Animated;
 
 import type React from 'react';
 

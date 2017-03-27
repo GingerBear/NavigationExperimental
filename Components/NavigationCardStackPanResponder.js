@@ -11,18 +11,18 @@
  */
 'use strict';
 
-const Animated = require('Animated');
-const I18nManager = require('I18nManager');
-const NavigationAbstractPanResponder = require('NavigationAbstractPanResponder');
+const Animated = require('react-native').Animated;
+const I18nManager = require('react-native').I18nManager;
+const NavigationAbstractPanResponder = require('../NavigationAbstractPanResponder');
 
 const clamp = require('clamp');
 
 import type {
   NavigationPanPanHandlers,
-  NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+    NavigationSceneRendererProps,
+} from '../NavigationTypeDefinition';
 
-const emptyFunction = () => {};
+const emptyFunction = () => { };
 
 /**
  * The duration of the card animation in milliseconds.
@@ -54,7 +54,7 @@ const Directions = {
   'VERTICAL': 'vertical',
 };
 
-export type NavigationGestureDirection =  'horizontal' | 'vertical';
+export type NavigationGestureDirection = 'horizontal' | 'vertical';
 
 type Props = NavigationSceneRendererProps & {
   onNavigateBack: ?Function,
@@ -199,7 +199,7 @@ class NavigationCardStackPanResponder extends NavigationAbstractPanResponder {
       }
 
       if (
-        distance > DISTANCE_THRESHOLD  ||
+        distance > DISTANCE_THRESHOLD ||
         value <= index - POSITION_THRESHOLD
       ) {
         props.onNavigateBack();

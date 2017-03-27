@@ -11,12 +11,12 @@
  */
 'use strict';
 
-const NavigationCard = require('NavigationCard');
-const NavigationCardStack = require('NavigationCardStack');
-const NavigationHeader = require('NavigationHeader');
-const NavigationPropTypes = require('NavigationPropTypes');
-const NavigationStateUtils = require('NavigationStateUtils');
-const NavigationTransitioner = require('NavigationTransitioner');
+const NavigationCard = require('./Components/NavigationCard');
+const NavigationCardStack = require('./Components/NavigationCardStack');
+const NavigationHeader = require('./Components/NavigationHeader');
+const NavigationPropTypes = require('./NavigationPropTypes');
+const NavigationStateUtils = require('./NavigationStateUtils');
+const NavigationTransitioner = require('./NavigationTransitioner');
 
 const NavigationExperimental = {
   // Core

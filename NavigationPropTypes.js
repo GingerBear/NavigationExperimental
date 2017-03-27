@@ -13,7 +13,7 @@
 
 import type  {
   NavigationSceneRendererProps,
-} from 'NavigationTypeDefinition';
+} from './NavigationTypeDefinition';
 
 /**
  * React component PropTypes Definitions. Consider using this as a supplementary
@@ -22,13 +22,13 @@ import type  {
  * type check errors at build time.
  */
 
-const Animated = require('Animated');
-const React = require('React');
+const Animated = require('react-native').Animated;
+const React = require('react');
 
-const {PropTypes} = React;
+const { PropTypes } = React;
 
 /* NavigationAction */
-const action =  PropTypes.shape({
+const action = PropTypes.shape({
   type: PropTypes.string.isRequired,
 });
 
