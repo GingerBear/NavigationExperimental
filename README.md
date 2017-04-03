@@ -5,6 +5,11 @@ The motivation of this is that NavigationExperimental will be deprecated soon, b
 To use:
 
 ```js
+// add to package.json dependencies
+"navigation-experimental": "git+https://github.com/gingerbear/NavigationExperimental.git",
+```
+
+```js
 // change
 import { NavigationExperimental } from 'react-native';
 // to
