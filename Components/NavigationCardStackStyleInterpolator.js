@@ -90,8 +90,8 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
   const inputRange = [index - 1, index, index + 0.99, index + 1];
   const width = layout.initWidth;
   const outputRange = I18nManager.isRTL ?
-    ([-width, 0, 10, 10]: Array<number>) :
-  ([width, 0, -10, -10]: Array<number>);
+    ([-width, 0, 100, 100]: Array<number>) :
+  ([width, 0, -100, -100]: Array<number>);
 
 
   const opacity = position.interpolate({
@@ -113,7 +113,7 @@ const translateX = position.interpolate({
 return {
   opacity,
   transform: [
-    { scale },
+    // { scale },
     { translateX },
     { translateY },
   ],
