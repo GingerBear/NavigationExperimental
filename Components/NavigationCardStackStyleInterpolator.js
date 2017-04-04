@@ -88,36 +88,24 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
 
   const index = scene.index;
   const inputRange = [index - 1, index, index + 0.99, index + 1];
-  const width = layout.initWidth;
+  const width = layout.initWidth + 30;
   const outputRange = I18nManager.isRTL ?
     ([-width, 0, 100, 100]: Array<number>) :
   ([width, 0, -100, -100]: Array<number>);
 
 
-  const opacity = position.interpolate({
+  const translateY = 0;
+  const translateX = position.interpolate({
     inputRange,
-    outputRange: ([1, 1, 0.3, 0]: Array<number>),
-});
-
-const scale = position.interpolate({
-  inputRange,
-  outputRange: ([1, 1, 0.95, 0.95]: Array<number>),
+    outputRange,
   });
 
-const translateY = 0;
-const translateX = position.interpolate({
-  inputRange,
-  outputRange,
-});
-
-return {
-  opacity,
-  transform: [
-    // { scale },
-    { translateX },
-    { translateY },
-  ],
-};
+  return {
+    transform: [
+      { translateX },
+      { translateY },
+    ],
+  };
 }
 
 function forVertical(props: NavigationSceneRendererProps): Object {
