@@ -20,6 +20,7 @@ const StyleSheet = require('react-native').StyleSheet;
 const View = require('react-native').View;
 
 const invariant = require('fbjs/lib/invariant');
+const EPSILON = 1e-9;
 
 import type {
   NavigationAnimatedValue,
@@ -53,7 +54,7 @@ const { PropTypes } = React;
 
 const DefaultTransitionSpec = {
   duration: 250,
-  easing: Easing.inOut(Easing.ease),
+  easing: Easing.bezier(0.42, 0, 0.58, 1, EPSILON),
   timing: Animated.timing,
 };
 
